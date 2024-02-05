@@ -6,6 +6,7 @@ import { Box, IconButton, Tooltip, } from '@mui/material';
 import { Check, Delete, Edit } from '@mui/icons-material';
 import Spinner from 'react-bootstrap/Spinner';
 import { MaterialReactTable } from "material-react-table";
+import Heading from '../../Component/comon/Heading/Heading';
 
 
 
@@ -80,6 +81,11 @@ const Categories = () => {
     );
     return (
         <main className='main-container'>
+            <Heading
+                    heading={"Categories"}
+                    navigateTo={"/categories"}
+                    BreadcrumbMain={"Categories"}
+                />
             <div className="shadow-sm p-sm-4 extrapd"
                 style={{
                     backgroundColor: "#fff",
@@ -106,7 +112,7 @@ const Categories = () => {
                             fontsize: '16px',
                             borderRadius: "7px",
                             width: "100%"
-                        }} onClick={handleShow}>Add Categories</button>
+                        }} onClick={() => navigate("/add-categories")}>Add Categories</button>
                     </div>
                 </div>
               
@@ -178,4 +184,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default React.memo(Categories) 

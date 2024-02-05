@@ -1,26 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
-import Button from 'react-bootstrap/Button';
 import { Box, IconButton, Tooltip, } from '@mui/material';
 import { Check, Delete, Edit } from '@mui/icons-material';
 import Spinner from 'react-bootstrap/Spinner';
 import { MaterialReactTable } from "material-react-table";
+import Heading from '../../Component/comon/Heading/Heading';
 
 
 
 const Products = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const [check, setCheck] = useState({
-        Categories: "",
-        Description: "",
-        ProductsName:"",
-        ProductsPrice:"",
-        Productsquantity:"",
-
-    });
-
     const [data, setData] = useState("");
     const [data1, setData1] = useState("");
     const handleCloses = () => {
@@ -102,6 +92,11 @@ const Products = () => {
     );
     return (
         <main className='main-container'>
+              <Heading
+                    heading={"Products"}
+                    navigateTo={"/products"}
+                    BreadcrumbMain={"Products"}
+                />
             <div className="shadow-sm p-sm-4 extrapd"
                 style={{
                     backgroundColor: "#fff",
@@ -128,7 +123,7 @@ const Products = () => {
                             fontsize: '16px',
                             borderRadius: "7px",
                             width: "100%"
-                        }} onClick={handleShow}>Add Products</button>
+                        }} onClick={() => navigate("/add-product")}>Add Products</button>
                     </div>
                 </div>
               
@@ -148,94 +143,10 @@ const Products = () => {
                             </Box>
                         )} />
             </div>
-            <Modal show={show} >
-                <Modal.Header>
-                    <Modal.Title className="Header_Modal">
-                        {/* <MdAddLocation className="Fa_icons" /> */}
-                        Add New Products
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <label className="form-label fw-bold text-dark" >
-                    Products Name :
-                    </label>
-                    <input
-                        name="ProductsName"
-                        value={check.ProductsName}
-                        onChange={handelValue}
-                        id="groupName"
-                        placeholder="Categories..."
-                        className="w-100 text-dark  input-border-color form-control width-auto"
-                    />
-                    <label className="form-label fw-bold text-dark" >
-                    Products Price :
-                    </label>
-                    <input
-                        name="ProductsPrice"
-                        value={check.ProductsPrice}
-                        onChange={handelValue}
-                        id="groupName"
-                        placeholder="Categories..."
-                        className="w-100 text-dark  input-border-color form-control width-auto"
-                    />
-                    <label className="form-label fw-bold text-dark" >
-                    Products Quantity :
-                    </label>
-                    <input
-                        name="Productsquantity"
-                        value={check.Productsquantity}
-                        onChange={handelValue}
-                        id="groupName"
-                        placeholder="Categories..."
-                        className="w-100 text-dark  input-border-color form-control width-auto"
-                    />
-                      
-                  
-                    <label className="form-label fw-bold text-dark" >
-                        Categories Name :
-                    </label>
-                    <select
-                        name="Categories"
-                        value={check.Categories}
-                        onChange={handelValue}
-                        id="groupName"
-                        placeholder="Categories..."
-                        className="w-100 text-dark  input-border-color form-control width-auto"
-                        >
-                        <option> Select</option>
-                    </select>
-                    <label className="form-label fw-bold text-dark" >
-                        Description :
-                    </label>
-                    <textarea
-                        name="Description"
-                        value={check.Description}
-                        onChange={handelValue}
-                        id="groupName"
-                        placeholder="Description..."
-                        className="w-100 text-dark  input-border-color form-control width-auto"
-                    />
-                </Modal.Body>
-                <Modal.Footer className="foot_img">
-                    <button
-                        type="button"
-                        className="modal_import_btn"
-                        onClick={handleClose}
-                    >
-                        Add
-                    </button>
-                    <button
-                        type="button"
-                        className="modal_close_btn"
-                        onClick={handleCloses}
-                    >
-                        Close
-                    </button>
-                </Modal.Footer>
-            </Modal>
+        
         </main>
     )
 }
 
 
-export default Products
+export default React.memo(Products) 

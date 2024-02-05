@@ -11,6 +11,8 @@ import Home from './Component/Header/Home';
 import Products from './Page/Product/Products';
 import Login from './Component/Login/Login';
 import Categories from './Page/Categories/Categories';
+import AddProduct from './Page/Product/AddProduct';
+import AddCategories from './Page/Categories/AddCategories';
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -69,8 +71,12 @@ function App() {
           <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
            <Routes>
             <Route exact path="/" element={<Home />} />
+             {/* Products */}
             <Route exact path="/products" element={<Products />} />
+            <Route exact path="/add-product" element={<AddProduct />} />
+            {/* Categories */}
             <Route exact path="/categories" element={<Categories />} />
+            <Route exact path="/add-categories" element={<AddCategories />} />
 
           </Routes>
           </>
